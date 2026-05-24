@@ -1,0 +1,1 @@
+Serveur client DataCloud - IP: 192.168.1.30 - OS: Ubuntu 22.04
