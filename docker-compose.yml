@@ -1,0 +1,26 @@
+services:
+  borgmatic:
+    image: ghcr.io/borgmatic-collective/borgmatic:latest
+    container_name: borgmatic
+    volumes:
+      - ./data:/data:ro
+      - ./borgmatic/config.yaml:/etc/borgmatic.d/config.yaml:ro
+      - borg-local:/var/backup/borg-local
+      - borgmatic-cache:/root/.cache/borg
+      - ./logs:/var/log/borgmatic
+      - ./ssh:/root/.ssh-keys:ro
+      - ./ssh-init.sh:/ssh-init.sh:ro
+    secrets:
+      - borg_passphrase
+    environment:
+      - TZ=Europe/Brussels
+    entrypoint: ["/bin/sh", "/ssh-init.sh"]
+    restart: unless-stopped
+
+secrets:
+  borg_passphrase:
+    file: ./secrets/borg_passphrase
+
+volumes:
+  borg-local:
+  borgmatic-cache:

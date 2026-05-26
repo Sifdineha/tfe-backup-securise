@@ -17,3 +17,4 @@ borg-repo/
 # Fichiers système
 .DS_Store
 *.swp
+ssh/

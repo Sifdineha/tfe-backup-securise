@@ -1,0 +1,23 @@
+repositories:
+    - path: /var/backup/borg-local
+      label: local
+    - path: ssh://hetzner-backup/var/backup/borg-repo
+      label: distant
+
+source_directories:
+    - /data/administratif
+    - /data/clients
+    - /data/configs
+
+encryption_passcommand: "cat /run/secrets/borg_passphrase"
+compression: lz4
+archive_name_format: "backup-{now:%Y-%m-%dT%H:%M:%S}"
+
+keep_daily: 7
+keep_weekly: 4
+keep_monthly: 6
+
+checks:
+    - name: repository
+    - name: archives
+check_last: 3
