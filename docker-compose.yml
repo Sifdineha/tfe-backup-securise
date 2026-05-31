@@ -14,6 +14,7 @@ services:
       - borg_passphrase
     environment:
       - TZ=Europe/Brussels
+      - BORGMATIC_SCHEDULE=0 2 * * *
     entrypoint: ["/bin/sh", "/ssh-init.sh"]
     restart: unless-stopped
 
