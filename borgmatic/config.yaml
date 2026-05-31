@@ -21,12 +21,3 @@ checks:
     - name: repository
     - name: archives
 check_last: 3
-
-before_backup:
-    - echo "=== Début sauvegarde $(date) ===" >> /var/log/borgmatic/backup.log
-
-after_backup:
-    - echo "=== Sauvegarde terminée $(date) ===" >> /var/log/borgmatic/backup.log
-
-on_error:
-    - echo "=== ERREUR sauvegarde $(date) ===" >> /var/log/borgmatic/backup.log
